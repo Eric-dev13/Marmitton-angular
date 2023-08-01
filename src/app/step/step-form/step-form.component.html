@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="text-center my-3">{{steps != undefined && steps[0] != undefined ? steps[0].titre :''}}</h1>
+
+        <div class="col-12 col-lg-6 my-5">
+            <div class="shadow rounded p-3">
+                <h2 class="text-center mb-3">Ajouter une étape</h2>
+                <form #form="ngForm" (submit)="formulaire(form)">
+                    <div class="mb-3">
+
+                        <input type="hidden" name="id" [(ngModel)]="step.id">
+                        <input type="hidden" name="id" [(ngModel)]="step.recette_id">
+
+                        <!-- <input type="hidden" [(ngModel)]="step.ordonne" class="form-control" id="ordonne" rows="3"  name="ordonne"> -->
+
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" [(ngModel)]="step.description" class="form-control" id="description" rows="3" name="description">
+
+                        <label for="ordonne" class="form-label">Ordre</label>
+                        <input type="text" [(ngModel)]="step.ordonne" class="form-control" id="ordonne" rows="3" name="ordonne">
+                        
+                        <input type="hidden" name="recette_id" [(ngModel)]="id_recette">
+                        <!-- <input [(ngModel)]="step.unite" class="form-control" id="unite" rows="3" name="unite"> -->
+                    </div>
+                    <button class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 my-5">
+            <div class="shadow rounded p-3">
+                <h2 class="text-center mb-3">Listes des étapes</h2>
+                <div class="mb-3" *ngFor="let step of steps; index as i;" >
+                    <div class="d-flex justify-content-between px-3 py-1 border rounded border">
+                        <h4 class="text-center">{{ step.description }}</h4>
+                        <p class="text-center">{{ step.ordonne }}</p>
+                        <div class="d-flex">
+                            <!-- <a [routerLink]="['/formstep', step.id]" class="btn btn-primary me-3">Modifier</a> -->
+                            <a (click)="delete(step.id)" class="btn btn-danger">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

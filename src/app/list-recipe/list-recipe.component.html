@@ -1,0 +1,37 @@
+<div class="container">
+    <h3 class="text-center p-2">Liste des recettes</h3>
+
+    <div class="row justify-content-around">
+
+        <div class="card mb-3 shadow" style="width: 25rem;" *ngFor="let recette of recipes; index as i">
+            <!--
+                Attribut Binding
+            One-Way Data Binding (liaison unidirectionnelle) : 
+            Cela relie les données du composant vers le template. 
+            Cela signifie que les changements dans le composant sont reflétés dans le template, mais les changements dans le template ne sont pas propagés vers le composant.
+            -->
+            <img [src]="recette.photo" class="card-img-top mt-2" alt="...">
+
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{ recette.titre }}</h5>
+                <!-- <p>Ingrédients: {{ recette.ingredient }}</p>   -->
+                <div class="d-flex flex-column justify-content-around">
+                    <a [routerLink]="['/oneRecipe', recette.id]" class="btn btn-primary mb-3">Voir le détail de la recette</a>
+                    <a [routerLink]="['/formRecipe', recette.id]" class="btn btn-primary mb-3">Modifier la recette</a>
+                    <a [routerLink]="['/formIngredient', recette.id]" class="btn btn-primary mb-3">Ajouter des ingrédients</a>
+                    <a [routerLink]="['/formStep', recette.id]" class="btn btn-primary mb-3">Ajouter des étapes</a>
+                    <a (click)="delete(recette.id)" class="btn btn-primary">Supprimer la recette</a>
+                </div>                     
+                
+                <!-- <app-bouton-detail  
+                    [description]="recette.description"
+                    [difficulte]="recette.difficulte"
+                    [tempsPrep]="recette.tempsPrep" 
+                    [tempsCuisson]="recette.tempsCuisson" 
+                    [cout]="recette.cout"
+                    [etapes]="recette.etapes">
+                </app-bouton-detail> -->
+            </div>
+        </div>
+    </div>
+</div>

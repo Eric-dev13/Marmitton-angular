@@ -1,0 +1,14 @@
+<div class="mb-3">
+    <label for="category" class="form-label">Nom de l'ingrédient</label>
+    <input  class="form-control" id="nom" #nom rows="3" name="nom">
+
+    <label for="category" class="form-label">Quantité</label>
+    <input  class="form-control" #quantite id="quantite" rows="3" name="quantite">
+
+    <label for="category" class="form-label" #quantite >Unité</label>
+    <input  class="form-control" #unite id="unite" rows="3" name="unite">
+
+     <!-- ************ Form Emitter ************ -->
+    <div (click)="addIngredient(nom.value, unite.value, quantite.value)"  class="btn btn-primary">Ajouter un ingrédient</div>
+     <!-- ************************************** -->
+</div>

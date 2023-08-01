@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="text-center">Ajouter une recettes</h1>
+        <div class="col-12 col-lg-6 my-5">
+            <!-- #form: objet pour encapsuler les valeurs des champs avec attribut name ($_POST) -->
+            <form #form="ngForm" (submit)="formulaire(form)">
+                <div class="mb-3">
+                    <label for="titre" class="form-label">Titre</label>
+                    <!-- 
+                    [(ngModel)]="recette.value":  Cette directive est utilisée pour établir une liaison bidirectionnelle de données entre le modèle de données (dans le composant) et la vue (template HTML). 
+                    La liaison bidirectionnelle de données signifie que les changements dans le modèle de données mettront automatiquement à jour la vue,
+                     et les changements dans la vue mettront également à jour le modèle de données. 
+                    Cela permet une synchronisation fluide entre l'interface utilisateur et les données de l'application.
+                    -->
+                    <input [(ngModel)]="recette.titre" type="text" class="form-control" id="titre" name="titre">
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Catégories</label>
+                    <select [(ngModel)]="recette.categorie_id" class="form-select" aria-label="Default select example"
+                        id="category" name="categorie_id">
+                        <option disabled>Catégorie</option>
+                        <option [value]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="difficulte" class="form-label">Difficulté</label>
+                    <select [(ngModel)]="recette.difficulte" class="form-select" aria-label="Default select example"
+                        id="difficulte" name="difficulte">
+                        <option selected>Difficulté</option>
+                        <option value="facile">Facile</option>
+                        <option value="moyen">Moyen</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="tempsprep" class="form-label">tempsPrep</label>
+                    <textarea [(ngModel)]="recette.tempsprep" class="form-control" id="tempsprep" rows="3"
+                        name="tempsprep"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="tempscuisson" class="form-label">Temps de cuisson</label>
+                    <input [(ngModel)]="recette.tempscuisson" type="text" class="form-control" id="tempscuisson"
+                        name="tempscuisson">
+                </div>
+
+                <input type="hidden" name="id" [(ngModel)]="recette.id">
+
+                <div class="mb-3">
+                    <label for="cout" class="form-label">Cout</label>
+                    <input [(ngModel)]="recette.cout" type="text" class="form-control" id="cout" name="cout">
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo</label>
+                    <input [(ngModel)]="recette.photo" type="text" class="form-control" id="photo" name="photo">
+                </div>
+
+                <!-- ************ Form Emitter ************ -->
+                <div class="p-3 mb-3 border">
+                    <h5 class="mb-3">Ajouter des Ingrédients</h5>
+                    <app-add-ingredient (ingrEvent)="addIngr($event)"></app-add-ingredient>
+                    <ul class="ms-5">
+                        <li *ngFor="let ingredient of ingredients">
+                            {{ingredient.quantite}}
+                            {{ingredient.unite}}
+                            {{ingredient.nom}}
+                        </li>
+                    </ul>
+                </div>
+                <!-- **************************************** -->
+
+                <button class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="text-center my-3">{{ingredients != undefined && ingredients[0] != undefined ? ingredients[0].titre :''}}</h1>
+        <div class="col-12 col-lg-6 my-5">
+            <div class="shadow rounded p-3">
+                <h2 class="text-center mb-3">Ajouter un ingrédient</h2>
+                <form #form="ngForm" (submit)="formulaire(form)">
+                    <div class="mb-3">
+
+                        <input type="hidden" name="id" [(ngModel)]="ingredient.id">
+                        <input type="hidden" name="id" [(ngModel)]="ingredient.recette_id">
+
+                        <label for="category" class="form-label">Nom de l'ingrédient</label>
+                        <input [(ngModel)]="ingredient.name" class="form-control" id="name" rows="3" name="name">
+
+                        <label for="category" class="form-label">Quantité</label>
+                        <input [(ngModel)]="ingredient.quantite" class="form-control" id="quantite" rows="3"
+                            name="quantite">
+
+                        <label for="category" class="form-label">Unité</label>
+                        <select class="form-select" [(ngModel)]="ingredient.unite" name="unite">
+                            <option selected disabled>Open this select menu</option>
+                            <option value="Litre(s)">Litre(s)</option>
+                            <option value="Kg">Kg</option>
+                            <option value="Pièce">Pièce</option>
+                        </select>
+
+                        <input type="hidden" name="recette_id" [(ngModel)]="id_recette">
+                        <!-- <input [(ngModel)]="ingredient.unite" class="form-control" id="unite" rows="3" name="unite"> -->
+                    </div>
+                    <button class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 my-5">
+            <div class="shadow rounded p-3">
+                <h2 class="text-center mb-3">Listes des ingrédients</h2>
+                <div class="mb-3" *ngFor="let ingredient of ingredients; index as i">
+                    <div class="d-flex justify-content-between px-3 py-1 border rounded border">
+                        <h4 class="text-center">{{ ingredient.name }}</h4>
+                        <p class="text-center">{{ ingredient.quantite }}</p>
+                        <p class="text-center">{{ ingredient.unite }}</p>
+                        <div class="d-flex">
+                            <!-- <a [routerLink]="['/formIngredient', ingredient.id]" class="btn btn-primary me-3">Modifier</a> -->
+                            <a (click)="delete(ingredient.id)" class="btn btn-danger">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

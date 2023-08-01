@@ -1,0 +1,19 @@
+<div class="container">
+    <h3 class="text-start p-2">Liste des recettes</h3>
+
+    <div class="row justify-content-around">
+
+        <div class="card mb-3 shadow" style="width: 25rem;" *ngFor="let recette of recettes;  index as i">
+            <img src="{{ recette.photo }}" class="card-img-top" alt="...">
+
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{ recette.titre }}</h5>
+
+                <app-bouton-detail [recette]="recette" [description]="recette.description"
+                    [ingredients]="recette.ingredients" [difficulte]="recette.difficulte"
+                    [tempsPrep]="recette.tempsPrep" [tempsCuisson]="recette.tempsCuisson" [cout]="recette.cout"
+                    [etapes]="recette.etapes"></app-bouton-detail>
+            </div>
+        </div>
+    </div>
+</div>

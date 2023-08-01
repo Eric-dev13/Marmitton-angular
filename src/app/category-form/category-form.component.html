@@ -1,0 +1,16 @@
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="text-center">Ajouter une catégorie</h1>
+        <div class="col-12 col-lg-6 my-5">
+            <form #form="ngForm" (submit)="formulaire(form,id)">
+                <div class="mb-3">
+                    <label for="category" class="form-label">Nom de la catégorie</label>
+                    <input [(ngModel)]="category.name" class="form-control" id="name" rows="3" name="name">
+                </div>
+               
+                <button class="btn btn-primary">Envoyer</button>
+            </form>
+        </div>
+    </div>
+</div>

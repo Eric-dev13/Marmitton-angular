@@ -1,0 +1,18 @@
+<div class="card-body d-flex">
+    <a href="#" class="btn btn-outline-primary me-2" (mouseenter)="onMouseLeaveBtn_1()" (mouseout)="onMouseLeaveBtn_1()">
+        {{ toogleBtn_1 ? 'Cacher cout et difficulté' : 'Voir cout et difficulté' }}
+    </a>
+    <a href="#" class="btn btn-outline-primary" (mouseenter)="onMouseLeaveBtn_2()" (mouseout)="onMouseLeaveBtn_2()">
+        {{ toogleBtn_2 ? 'Cacher temps de préparation' : 'Voir le temps de préparation' }}
+    </a>
+</div>
+
+<ul class="list-group list-group-flush" *ngIf="toogleBtn_1">
+    <li class="list-group-item"><span class="fw-bold">Cout: </span>{{ cout }}</li>
+    <li class="list-group-item"><span class="fw-bold">Difficulté: </span>{{ difficulte }} mn</li>
+</ul>
+<ul class="list-group list-group-flush" *ngIf="toogleBtn_2">
+    <li class="list-group-item"><span class="fw-bold">Temps de préparation: </span>{{ recette.tempsPrep }} mn</li>
+    <li class="list-group-item"><span class="fw-bold">Temps de cuisson: </span>{{ tempsCuisson }} mn</li>
+</ul>
+
